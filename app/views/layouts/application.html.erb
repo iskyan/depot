@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Depot</title>
+    <%= favicon_link_tag 'rails.png' %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,23 @@
   </head>
 
   <body class='<%= controller.controller_name %>'>
-    <%= yield %>
+   <div id="banner">
+      <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
+      <span class="title"><%= @page_title %></span>
+   </div>
+   <div id="columns">
+    <div id="side">
+      <ul>
+        <li><a href="http://www....">Home</a></li>
+        <li><a href="http://www..../faq">Quastions</a></li>
+        <li><a href="http://www..../news">News</a></li>
+        <li><a href="http://www..../contact">Contact</a></li>
+      </ul>
+      <%= Time.now.strftime('%I:%M %p') %>
+    </div>
+    <div id="main">
+      <%= yield %>
+    </div>
+   </div>
   </body>
 </html>
