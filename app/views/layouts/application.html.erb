@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Depot</title>
+    <title>Pragprog Books Online Store</title>
     <%= favicon_link_tag 'rails.png' %>
     <%= csrf_meta_tags %>
 
@@ -26,11 +26,21 @@
 
       <ul>
         <li><a href="http://www....">Home</a></li>
-        <li><a href="http://www..../faq">Quastions</a></li>
+        <li><a href="http://www..../faq">Questions</a></li>
         <li><a href="http://www..../news">News</a></li>
         <li><a href="http://www..../contact">Contact</a></li>
       </ul>
-      <%= Time.now.strftime('%I:%M %p') %>
+
+      <% if session[:user_id] %>
+        <ul>
+          <li><%= link_to 'Orders', orders_path %></li>
+          <li><%= link_to 'Products', products_path %></li>
+          <li><%= link_to 'Users', users_path %></li>
+        </ul>
+        <%= button_to 'Logout', logout_path, method: :delete %>
+      <% else %>
+        <%= button_to 'Login', login_path %>
+      <% end %>
     </div>
     <div id="main">
       <%= yield %>
